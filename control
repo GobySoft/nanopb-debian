@@ -2,7 +2,7 @@ Source: nanopb
 Section: devel
 Priority: optional
 Maintainer: Laszlo Boszormenyi (GCS) <gcs@debian.org>
-Build-Depends: debhelper (>= 8.0.0), dh-python, cmake, scons, python3, protobuf-compiler, python3-protobuf
+Build-Depends: debhelper (>= 8.0.0), dh-python, cmake, scons [amd64], python3 [amd64], protobuf-compiler, python3-protobuf [amd64]
 Homepage: https://jpa.kapsi.fi/nanopb/
 Standards-Version: 4.4.1
 

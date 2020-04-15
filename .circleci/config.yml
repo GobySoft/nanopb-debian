@@ -155,16 +155,17 @@ workflows:
       - armhf-buster-build:
           requires:
             - arm64-buster-build
-            
-      - amd64-xenial-build:
-          requires:
-            - get-orig-source
-      - arm64-xenial-build:
-          requires:
-            - amd64-xenial-build
-      - armhf-xenial-build:
-          requires:
-            - arm64-xenial-build
+
+# Xenial is missing python3-protobuf, so we're not building nanopb for it for now
+#      - amd64-xenial-build:
+#          requires:
+#            - get-orig-source
+#      - arm64-xenial-build:
+#          requires:
+#            - amd64-xenial-build
+#      - armhf-xenial-build:
+#          requires:
+#            - arm64-xenial-build
             
       - amd64-bionic-build:
           requires:
@@ -181,14 +182,14 @@ workflows:
             - armhf-stretch-build
             - armhf-buster-build
             - armhf-bionic-build
-            - armhf-xenial-build
+#            - armhf-xenial-build
 
       - release-upload:
           requires:
             - armhf-stretch-build
             - armhf-buster-build 
             - armhf-bionic-build
-            - armhf-xenial-build            
+#            - armhf-xenial-build            
             - continuous-upload
             
 jobs:
