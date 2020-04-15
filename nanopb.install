@@ -1,0 +1,6 @@
+generator/protoc-gen-nanopb /usr/bin/
+generator/nanopb_generator.py /usr/bin/
+generator/proto/*.py /usr/lib/python3/dist-packages/proto/
+generator/proto/*.proto /usr/lib/python3/dist-packages/proto/
+generator/proto/google/ /usr/lib/python3/dist-packages/proto/
+usr/lib/python3/

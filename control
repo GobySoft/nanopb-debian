@@ -1,0 +1,30 @@
+Source: nanopb
+Section: devel
+Priority: optional
+Maintainer: Laszlo Boszormenyi (GCS) <gcs@debian.org>
+Build-Depends: debhelper (>= 8.0.0), dh-python, cmake, scons, python3, protobuf-compiler, python3-protobuf
+Homepage: https://jpa.kapsi.fi/nanopb/
+Standards-Version: 4.4.1
+
+Package: nanopb
+Architecture: all
+Depends: protobuf-compiler, ${python3:Depends}, ${misc:Depends}
+Multi-Arch: foreign
+Description: Protocol Buffers with small code size
+ Plain-C implementation of Google's Protocol Buffers data format. It is
+ targeted at 32 bit microcontrollers, but is also fit for other embedded
+ systems with tight (<10 kB ROM, <1 kB RAM) memory constraints.
+ .
+ This package contains the nanopb generator.
+
+Package: libnanopb-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}
+Multi-Arch: same
+Description: Protocol Buffers with small code size, development files
+ Plain-C implementation of Google's Protocol Buffers data format. It is
+ targeted at 32 bit microcontrollers, but is also fit for other embedded
+ systems with tight (<10 kB ROM, <1 kB RAM) memory constraints.
+ .
+ This package contains the development files (headers, static library).

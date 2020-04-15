@@ -1,0 +1,35 @@
+Description: use Python 3 by default
+ Change interpreter to Python 3.
+Author: Laszlo Boszormenyi (GCS) <gcs@debian.org>
+Forwarded: no
+Last-Update: 2020-01-06
+
+---
+
+--- nanopb-0.4.0.orig/CMakeLists.txt
++++ nanopb-0.4.0/CMakeLists.txt
+@@ -41,7 +41,7 @@ endif()
+ if(nanopb_BUILD_GENERATOR)
+     set(generator_protos nanopb)
+ 
+-    find_package(PythonInterp 2.7 REQUIRED)
++    find_package(PythonInterp 3 REQUIRED)
+     execute_process(
+         COMMAND ${PYTHON_EXECUTABLE} -c
+             "from distutils import sysconfig; print(sysconfig.get_python_lib(prefix=''))"
+--- nanopb-0.4.0.orig/generator/nanopb_generator.py
++++ nanopb-0.4.0/generator/nanopb_generator.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ # kate: replace-tabs on; indent-width 4;
+ 
+ from __future__ import unicode_literals
+--- nanopb-0.4.0.orig/generator/protoc
++++ nanopb-0.4.0/generator/protoc
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ import sys
+ from nanopb_generator import invoke_protoc

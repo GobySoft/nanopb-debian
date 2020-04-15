@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+#-*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# enable dynamic allocation support
+export DEB_CFLAGS_MAINT_APPEND=-DPB_ENABLE_MALLOC
+
+override_dh_clean:
+	dh_clean
+	find $(CURDIR) -name \*.pyc -delete
+	$(RM) -f $(CURDIR)/generator/proto/nanopb_pb2.py
+	$(RM) $(CURDIR)/tests/.sconsign.dblite
+	$(RM) -rf $(CURDIR)/tests/.sconf_temp/
+	$(RM) -rf $(CURDIR)/tests/build/
+	$(RM) $(CURDIR)/tests/config.log
+
+override_dh_auto_build:
+	dh_auto_build
+	$(MAKE) -C $(CURDIR)/generator/proto/
+
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	cd $(CURDIR)/tests/ && scons
+endif
+
+%:
+	dh $@ --with python3
+
+.PHONY: override_dh_clean override_dh_auto_build override_dh_auto_test get-orig-source
+
+UPSTREAM_LAST_RELEASE = 0.4.1
+UPSTREAM_URL = https://github.com/nanopb/nanopb/archive/$(UPSTREAM_LAST_RELEASE).tar.gz
+get-orig-source:
+	wget $(UPSTREAM_URL) -O nanopb_$(UPSTREAM_LAST_RELEASE).orig.tar.gz
